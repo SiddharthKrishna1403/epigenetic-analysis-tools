@@ -1,0 +1,24 @@
+FROM jupyter/datascience-notebook
+
+USER root
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install bioinformatics packages
+RUN mamba install -y \
+    fastqc \
+    trimmomatic \
+    hisat2 \
+    stringtie \
+    hic-pro \
+    juicer \
+    bioconductor-deseq2 \
+    samtools \
+    && mamba clean -a
+
+USER ${NB_UID}
+
+WORKDIR /home/jovyan/work

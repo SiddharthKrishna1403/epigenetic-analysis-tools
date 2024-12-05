@@ -13,3 +13,6 @@ data/processed/
 # Results and intermediate files
 results/
 final_pipeline/work/
+
+.env
+docker-compose.override.yml
