@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  biotools:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.biotools
+    volumes:
+      - .:/work
+
   jupyter:
     build:
       context: ./docker
@@ -11,11 +18,5 @@ services:
       - .:/home/jovyan/work
     environment:
       - JUPYTER_ENABLE_LAB=yes
-    command: start-notebook.sh --NotebookApp.token=''
-
-  biotools:
-    build:
-      context: ./docker
-      dockerfile: Dockerfile.biotools
-    volumes:
-      - .:/work
+    profiles:
+      - jupyter

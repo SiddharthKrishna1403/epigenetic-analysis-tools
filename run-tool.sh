@@ -22,12 +22,15 @@ case $TOOL in
     "juicer")
         docker-compose run --rm biotools juicer "$@"
         ;;
+    "deseq2")
+        docker-compose run --rm biotools R "$@"
+        ;;
     "jupyter")
-        docker-compose up jupyter
+        docker-compose --profile jupyter up
         ;;
     *)
         echo "Unknown tool: $TOOL"
-        echo "Available tools: fastqc, trimmomatic, hisat2, stringtie, hic-pro, juicer, jupyter"
+        echo "Available tools: fastqc, trimmomatic, hisat2, stringtie, hic-pro, juicer, deseq2, jupyter"
         exit 1
         ;;
 esac
